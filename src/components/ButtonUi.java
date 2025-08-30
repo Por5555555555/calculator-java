@@ -12,7 +12,6 @@ public class ButtonUi extends JButton {
   private int hight;
   private int x;
   private int y;
-  // private int MaxUiY;
   private Boolean centor = false;
   private int cenX;
   private int XDef;
@@ -83,5 +82,4 @@ public class ButtonUi extends JButton {
 
     return panel;
   };
-
 }
