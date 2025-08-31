@@ -25,7 +25,6 @@ public class LogApp {
   public LogApp setLevel(int LogLevelUser) {
     switch (LogLevelUser) {
       case 2:
-        System.out.println("2");
         LogLevel = LogLevelEnum.Debug;
       case 3:
         LogLevel = LogLevelEnum.Error;

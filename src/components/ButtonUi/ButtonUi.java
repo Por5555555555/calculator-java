@@ -1,4 +1,4 @@
-package components;
+package components.ButtonUi;
 
 import java.util.ArrayList;
 
@@ -14,6 +14,8 @@ public class ButtonUi extends JButton {
   private int y;
   private Boolean centor = false;
   private int cenX;
+  private Boolean setYpos = false;
+  private int setY;
   private int XDef;
   private int YDef;
   private LogApp log;
@@ -52,6 +54,11 @@ public class ButtonUi extends JButton {
   }
 
   public ButtonUi moveYStart() {
+    if (this.setYpos == true) {
+      this.y = setY;
+      log.Debug("local y -> " + String.valueOf(this.y));
+      return this;
+    }
     this.y = this.YDef;
     return this;
   }
@@ -60,6 +67,13 @@ public class ButtonUi extends JButton {
     this.cenX = (MaxUiX - ((this.width + this.x) * maxCur)) / 2;
     this.centor = true;
     log.Debug("Centor -> " + String.valueOf(cenX));
+    return this;
+  }
+
+  public ButtonUi setPosYStart(int posY) {
+    this.setY = posY;
+    this.setYpos = true;
+    log.Debug("Set y pos -> " + String.valueOf(posY));
     return this;
   }
 
