@@ -1,9 +1,12 @@
 package components.ButtonUi;
 
+import java.awt.List;
 import java.util.ArrayList;
-
+import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import logger.LogApp;
 
 public class ButtonUiInit {
   private int width;
@@ -13,6 +16,7 @@ public class ButtonUiInit {
   private int MaxUiX;
   private int maxCur;
   private int posY;
+  private LogApp log = new LogApp();
 
   public ButtonUiInit(int width, int hight, int x, int y, int MaxUiX, int MaxCur, int setPosY) {
     this.width = width;
@@ -25,7 +29,7 @@ public class ButtonUiInit {
   }
 
   public JPanel SetButtonUi() {
-    ArrayList<JButton> myBt = new ArrayList<JButton>();
+
     ButtonUi LayerBt = new ButtonUi(x, y, width, hight).setCenter(MaxUiX, maxCur).setPosYStart(posY);
 
     JButton bt1 = LayerBt.moveXStart().moveYStart().CreateButton(" ");
@@ -35,67 +39,27 @@ public class ButtonUiInit {
     JButton bt5 = LayerBt.moveXStart().moveYDown().CreateButton("7");
     JButton bt6 = LayerBt.moveXRight().CreateButton("8");
     JButton bt7 = LayerBt.moveXRight().CreateButton("9");
-    JButton bt8;
-    JButton bt9;
-    JButton bt10;
+    JButton bt8 = LayerBt.moveXRight().CreateButton("+", width, hight * 2 + y);
+    JButton bt9 = LayerBt.moveYDown().moveXStart().CreateButton("4");
+    JButton bt10 = LayerBt.moveXRight().CreateButton("5");
+    JButton bt11 = LayerBt.moveXRight().CreateButton("6");
+    JButton bt12 = LayerBt.moveYDown().moveXStart().CreateButton("1");
+    JButton bt13 = LayerBt.moveXRight().CreateButton("2");
+    JButton bt14 = LayerBt.moveXRight().CreateButton("3");
+    JButton bt15 = LayerBt.moveXRight().CreateButton("⏎", width, hight * 2 + y);
+    JButton bt16 = LayerBt.moveYDown().moveXStart().CreateButton("0", width * 2 + x, hight);
+    JButton bt17 = LayerBt.moveXRight().moveXRight().CreateButton(".");
 
-    bt1.addActionListener(new ButtonListener());
-    bt2.addActionListener(new ButtonListener());
-    bt3.addActionListener(new ButtonListener());
-    bt4.addActionListener(new ButtonListener());
-    bt5.addActionListener(new ButtonListener());
-    bt6.addActionListener(new ButtonListener());
-    bt7.addActionListener(new ButtonListener());
+    ArrayList<JButton> myBt = new ArrayList<JButton>(
+        Arrays.asList(
+            bt1, bt2, bt3,
+            bt4, bt5, bt6,
+            bt7, bt8, bt9,
+            bt10, bt11, bt12,
+            bt13, bt14, bt15,
+            bt16, bt17));
 
-    myBt.add(bt1);
-    myBt.add(bt2);
-    myBt.add(bt3);
-    myBt.add(bt4);
-    myBt.add(bt5);
-    myBt.add(bt6);
-    myBt.add(bt7);
-
-    myBt.add(LayerBt
-        .moveXRight()
-        .CreateButton("+", 50, 50 * 2 + 10));
-
-    // button layer 3
-    myBt.add(LayerBt
-        .moveXStart()
-        .moveYDown()
-        .CreateButton("4"));
-    myBt.add(LayerBt
-        .moveXRight()
-        .CreateButton("5"));
-    myBt.add(LayerBt
-        .moveXRight()
-        .CreateButton("6"));
-
-    // button layer 4
-    myBt.add(LayerBt
-        .moveXStart()
-        .moveYDown()
-        .CreateButton("1"));
-    myBt.add(LayerBt
-        .moveXRight()
-        .CreateButton("2"));
-    myBt.add(LayerBt
-        .moveXRight()
-        .CreateButton("3"));
-    myBt.add(LayerBt
-        .moveXRight()
-        .CreateButton("⏎", 50, 50 * 2 + 10));
-
-    // button layer 5
-    myBt.add(LayerBt
-        .moveXStart()
-        .moveYDown()
-        .CreateButton("0", 50 * 2 + 10, 50));
-    myBt.add(LayerBt
-        .moveXRight()
-        .moveXRight()
-        .CreateButton("."));
-
+    myBt.forEach(button -> button.addActionListener(new ButtonListener()));
     JPanel box = LayerBt.AddMitlPanel(myBt);
     return box;
   }

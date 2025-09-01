@@ -6,10 +6,11 @@ import java.awt.event.ActionListener;
 import logger.LogApp;
 
 public class ButtonListener implements ActionListener {
+  private int data;
 
   @Override
   public void actionPerformed(ActionEvent e) {
     LogApp log = new LogApp();
-    log.Error("This function test input -> " + e.getActionCommand());
+    log.Debug("User input -> " + e.getActionCommand());
   }
 }

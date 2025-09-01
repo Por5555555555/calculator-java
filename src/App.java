@@ -1,9 +1,11 @@
 import components.ButtonUi.ButtonUiInit;
+
+import components.TextFieldApp.TextFieldInit;
 import logger.LogApp;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-class App {
+public class App {
   static int width = 50;
   static int hight = 50;
   static int x = 10;
@@ -11,6 +13,12 @@ class App {
   static int MaxUiX = 500;
   static int MaxCur = 4;
   static int setPosY = 150;
+  static int FieldWidth = 250;
+  static int FieldHeight = 60;
+  static int FieldX = -10;
+  static int FieldY = 50;
+
+  public static int data_test = 0;
 
   public static void main(String[] args) {
     LogApp log = new LogApp();
@@ -18,8 +26,9 @@ class App {
 
     JFrame frame = new GuiInit(500, 550).init();
     JPanel box = new ButtonUiInit(width, hight, x, y, MaxUiX, MaxCur, setPosY).SetButtonUi();
+    JPanel fieldText = new TextFieldInit(FieldWidth, FieldHeight, "", box, MaxUiX, FieldX, FieldY).setLabel();
 
-    frame.add(box);
+    frame.add(fieldText);
     frame.setVisible(true);
   }
 }
