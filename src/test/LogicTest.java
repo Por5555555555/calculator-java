@@ -5,7 +5,7 @@ import LogicApp.InputLogic;
 
 public class LogicTest {
   private LogApp log = new LogApp();
-  private InputLogic logic = new InputLogic();
+  private InputLogic logic = InputLogic.init();
 
   public void test() {
     log.Info(" --------------------------------------\n\ttest logic\n\t--------------------------------------");

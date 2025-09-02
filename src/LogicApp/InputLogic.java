@@ -9,11 +9,20 @@ public class InputLogic {
   private static ArrayList<String> ObjStringsArrayList = new ArrayList<>();
   private static int IndexNumber = 0;
   private static int IndexObj = 0;
-  private LogApp log = new LogApp();
+  private static LogApp log = new LogApp();
 
-  public InputLogic() {
+  public static InputLogic initWithNewIndex() {
     NumberStringArrayList.add("");
     ObjStringsArrayList.add("");
+    log.Debug("init array");
+    return new InputLogic();
+  }
+
+  public static InputLogic init() {
+    return new InputLogic();
+  }
+
+  private InputLogic() {
   }
 
   public InputLogic moveIndexNumber() {
@@ -33,6 +42,8 @@ public class InputLogic {
     IndexObj = 0;
     NumberStringArrayList = new ArrayList<>();
     ObjStringsArrayList = new ArrayList<>();
+    NumberStringArrayList.add("");
+    ObjStringsArrayList.add("");
     return this;
   }
 
@@ -43,10 +54,45 @@ public class InputLogic {
     return this;
   }
 
+  public InputLogic addPoint(String newCharPoint) {
+    if (NumberStringArrayList.get(IndexNumber).length() < 1) {
+      log.Error("U cannot input ponter first");
+      return this;
+    }
+    for (int i = 0; i < NumberStringArrayList.get(IndexNumber).length(); i++) {
+      char NumChar = NumberStringArrayList.get(IndexNumber).charAt(i);
+      if (NumChar != '.')
+        continue;
+      log.Error("U cannot add muilt dot");
+      return this;
+    }
+
+    String oldNum = NumberStringArrayList.get(IndexNumber);
+    String newNum = oldNum + newCharPoint;
+    NumberStringArrayList.set(IndexNumber, newNum);
+    log.Info("Add point");
+    return this;
+  }
+
+  private InputLogic UpdatePointerWithIndex() {
+    String numStr = NumberStringArrayList.get(IndexNumber);
+    float num = Float.parseFloat(numStr);
+    NumberStringArrayList.set(IndexNumber, String.valueOf(num));
+    return this;
+  }
+
   public InputLogic addObj(String newCharObj) {
-    String objOld = ObjStringsArrayList.get(IndexObj);
-    String nuwNew = objOld + newCharObj;
-    ObjStringsArrayList.set(IndexObj, nuwNew);
+    log.Info("Test");
+    log.Debug(NumberStringArrayList.get(IndexNumber));
+    log.Debug(NumberStringArrayList.get(IndexNumber) == "");
+    if (NumberStringArrayList.get(IndexNumber) == "") {
+      log.Error("Error u cannnot add move obj");
+      return this;
+    }
+
+    log.Debug("for is ok");
+    ObjStringsArrayList.set(IndexObj, newCharObj);
+    UpdatePointerWithIndex();
     moveIndexNumber();
     moveIndexObj();
     return this;

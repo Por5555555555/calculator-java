@@ -2,6 +2,7 @@ package components.TextFieldApp;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import logger.LogApp;
 
 public class TextFieldInit {
@@ -9,29 +10,36 @@ public class TextFieldInit {
   private int y;
   private int width;
   private int height;
-  private String ctx;
   private LogApp log = new LogApp();
   private JPanel panel;
-  private int MaxXUi;
+  private int MaxUiX;
+  private static String ctx;
+  private static JTextField field;
 
-  public TextFieldInit(int width, int height, String ctx, JPanel panel, int MaxXUi, int x, int y) {
-    this.width = width;
-    this.height = height;
-    this.ctx = ctx;
-    this.panel = panel;
-    this.MaxXUi = MaxXUi;
+  public static TextFieldInit Init(int width, int height, String ctxStr, int MaxUiX, int x, int y, JPanel panel) {
+    ctx = ctxStr;
+    return new TextFieldInit(x, y, width, height, ctxStr, MaxUiX, panel);
+  }
+
+  public static TextFieldInit connect() {
+    return new TextFieldInit();
+  }
+
+  private TextFieldInit() {
+  }
+
+  private TextFieldInit(int x, int y, int width, int height, String ctxStr, int MaxUiX, JPanel panel) {
     this.x = x;
     this.y = y;
-  }
-
-  public TextFieldInit setSize(int width, int height) {
-    this.height = height;
     this.width = width;
-    return this;
+    this.height = height;
+    this.MaxUiX = MaxUiX;
+    this.panel = panel;
+    ctx = ctxStr;
   }
 
-  public TextFieldInit setCxt(String ctx) {
-    this.ctx = ctx;
+  public TextFieldInit setCxt(String ctxStr) {
+    field.setText(ctxStr);
     return this;
   }
 
@@ -41,10 +49,11 @@ public class TextFieldInit {
       return new JPanel();
     }
 
-    JTextField text = new TextField(width, height, ctx).setPos(x, y).setCenter(MaxXUi).Create();
-    text.setEditable(false);
+    field = new TextField(width, height, ctx).setPos(x, y).setCenter(MaxUiX).Create();
+    field.setEditable(false);
 
-    this.panel.add(text);
+    this.panel.add(field);
     return panel;
   }
+
 }

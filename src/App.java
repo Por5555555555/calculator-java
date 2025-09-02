@@ -1,9 +1,10 @@
 import components.ButtonUi.ButtonUiInit;
-import test.LogicTest;
 import components.TextFieldApp.TextFieldInit;
 import logger.LogApp;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import LogicApp.InputLogic;
 
 public class App {
   static int width = 50;
@@ -17,18 +18,20 @@ public class App {
   static int FieldHeight = 60;
   static int FieldX = -10;
   static int FieldY = 50;
-
   public static int data_test = 0;
 
   public static void main(String[] args) {
-    new LogicTest().test();
+    // new LogicTest().test();
+    InputLogic.initWithNewIndex();// .addNumber("123");
 
     LogApp log = new LogApp();
     log.Info("Create gui");
 
     JFrame frame = new GuiInit(500, 550).init();
     JPanel box = new ButtonUiInit(width, hight, x, y, MaxUiX, MaxCur, setPosY).SetButtonUi();
-    JPanel fieldText = new TextFieldInit(FieldWidth, FieldHeight, "", box, MaxUiX, FieldX, FieldY).setLabel();
+
+    TextFieldInit field = TextFieldInit.Init(FieldWidth, FieldHeight, "", MaxUiX, FieldX, FieldY, box);
+    JPanel fieldText = field.setLabel();
 
     frame.add(fieldText);
     frame.setVisible(true);

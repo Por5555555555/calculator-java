@@ -32,7 +32,7 @@ public class ButtonUiInit {
     log.Info("Create button fn");
     ButtonUi LayerBt = new ButtonUi(x, y, width, hight).setCenter(MaxUiX, maxCur).setPosYStart(posY);
 
-    JButton bt1 = LayerBt.moveXStart().moveYStart().CreateButton(" ");
+    JButton bt1 = LayerBt.moveXStart().moveYStart().CreateButton("CE");
     JButton bt2 = LayerBt.moveXRight().CreateButton("/");
     JButton bt3 = LayerBt.moveXRight().CreateButton("*");
     JButton bt4 = LayerBt.moveXRight().CreateButton("-");
