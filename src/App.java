@@ -1,5 +1,5 @@
 import components.ButtonUi.ButtonUiInit;
-
+import test.LogicTest;
 import components.TextFieldApp.TextFieldInit;
 import logger.LogApp;
 import javax.swing.JFrame;
@@ -21,6 +21,8 @@ public class App {
   public static int data_test = 0;
 
   public static void main(String[] args) {
+    new LogicTest().test();
+
     LogApp log = new LogApp();
     log.Info("Create gui");
 

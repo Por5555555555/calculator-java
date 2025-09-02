@@ -1,6 +1,5 @@
 package components.ButtonUi;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JButton;
@@ -30,6 +29,7 @@ public class ButtonUiInit {
 
   public JPanel SetButtonUi() {
 
+    log.Info("Create button fn");
     ButtonUi LayerBt = new ButtonUi(x, y, width, hight).setCenter(MaxUiX, maxCur).setPosYStart(posY);
 
     JButton bt1 = LayerBt.moveXStart().moveYStart().CreateButton(" ");
