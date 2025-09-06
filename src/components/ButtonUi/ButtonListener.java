@@ -39,6 +39,7 @@ public class ButtonListener implements ActionListener {
         logic.addPoint(ctx.trim());
         break;
       case "⏎":
+        logic.inputCalData();
         break;
       default:
         logic.addNumber(ctx.trim());

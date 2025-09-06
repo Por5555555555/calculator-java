@@ -11,6 +11,19 @@ public class InputLogic {
   private static int IndexObj = 0;
   private static LogApp log = new LogApp();
 
+  public ArrayList<String> getNumberStringArrayList() {
+    return NumberStringArrayList;
+  }
+
+  public ArrayList<String> getObjStringArrayList() {
+    return ObjStringsArrayList;
+  }
+
+  public InputLogic removeLastIndexObj() {
+    ObjStringsArrayList.remove(ObjStringsArrayList.size() - 1);
+    return this;
+  }
+
   public static InputLogic initWithNewIndex() {
     NumberStringArrayList.add("");
     ObjStringsArrayList.add("");
@@ -51,6 +64,7 @@ public class InputLogic {
     String numOld = NumberStringArrayList.get(IndexNumber);
     String numNew = numOld + newCharNum;
     NumberStringArrayList.set(IndexNumber, numNew);
+    log.Debug("Add number ->> " + newCharNum);
     return this;
   }
 
@@ -74,6 +88,20 @@ public class InputLogic {
     return this;
   }
 
+  public InputLogic inputCalData() {
+    log.Info("Size numberArray ->> " + String.valueOf(NumberStringArrayList.size())
+        + "\n\tSize ObjArray ->> " + String.valueOf(ObjStringsArrayList.size()));
+    if (NumberStringArrayList.size() < ObjStringsArrayList.size()) {
+      log.Error("U cannot number size < obj");
+      return this;
+    }
+    CalLogic logicCal = CalLogic.Init();
+    logicCal.CalData();
+    Reset();
+    NumberStringArrayList.set(0, logicCal.getAws());
+    return this;
+  }
+
   private InputLogic UpdatePointerWithIndex() {
     String numStr = NumberStringArrayList.get(IndexNumber);
     float num = Float.parseFloat(numStr);
@@ -82,15 +110,12 @@ public class InputLogic {
   }
 
   public InputLogic addObj(String newCharObj) {
-    log.Info("Test");
-    log.Debug(NumberStringArrayList.get(IndexNumber));
-    log.Debug(NumberStringArrayList.get(IndexNumber) == "");
     if (NumberStringArrayList.get(IndexNumber) == "") {
       log.Error("Error u cannnot add move obj");
       return this;
     }
 
-    log.Debug("for is ok");
+    log.Debug("Add obj new ->> " + newCharObj);
     ObjStringsArrayList.set(IndexObj, newCharObj);
     UpdatePointerWithIndex();
     moveIndexNumber();

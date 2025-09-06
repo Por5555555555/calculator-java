@@ -21,8 +21,10 @@ public class App {
   public static int data_test = 0;
 
   public static void main(String[] args) {
-    // new LogicTest().test();
     InputLogic.initWithNewIndex();// .addNumber("123");
+
+    // new LogicTest().test();
+    // new LogicCalTest().test();
 
     LogApp log = new LogApp();
     log.Info("Create gui");

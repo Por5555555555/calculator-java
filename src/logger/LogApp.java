@@ -35,7 +35,6 @@ public class LogApp {
   }
 
   public <T> void Info(T data) {
-    System.out.println(LogLevel);
     if (LogLevel == LogLevelEnum.Error)
       return;
     System.out.println(BLUE + "[Info] " + RESET + data);
@@ -49,5 +48,9 @@ public class LogApp {
     if (LogLevel == LogLevelEnum.Debug) {
       System.out.println(PURPLE + "[Debug] " + RESET + data);
     }
+  }
+
+  public <T> void Status(T data) {
+    System.out.print(CYAN + "[Status] " + RESET + data);
   }
 }
